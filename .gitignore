@@ -1,0 +1,32 @@
+# Configurações Privadas e Prompts
+meu_git.txt
+*.git.txt
+Prompt_Github.txt
+
+# Logs e Temporários
+*.log
+*.tmp
+tmp/
+temp/
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs e Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependências e Builds (caso sejam adicionados futuramente)
+node_modules/
+dist/
+build/
+.cache/
+
+# Ambientes e Segredos
+.env
+.env.*
+!.env.example
