@@ -1,53 +1,44 @@
-# RL Design | Landing Page (Neon Command)
+# RL Design | One Page Landing Page (Floating UI System)
 
-Landing page de conversão e posicionamento de marca para a **RL Design**, focada em serviços digitais e on-line (Design Gráfico, Social Media, Edição de Vídeo, Gestão de Tráfego e Web Design).
+Landing page de alta conversão e posicionamento de marca para a **RL Design**, focada em serviços digitais e on-line (Design Gráfico, Social Media, Edição de Vídeo, Gestão de Tráfego e Web Design).
 
-Desenvolvida com foco em alta percepção de valor, estética dark/neon premium e máxima performance, utilizando **HTML5 e CSS3 puros em arquivos separados, sem frameworks e sem JavaScript**.
+Desenvolvida sob o conceito visual **Floating UI / Card Presentation**, simula um painel flutuante sobre um fundo preto absoluto (`#000000`), com bordas discretas, cantos arredondados e sombras suaves que transmitem profundidade e elegância tecnológica.
 
----
-
-## ⚡ Principais Funcionalidades
-
-- **Hero Section de Alto Impacto:** Apresentação da proposta de valor com estatísticas e CTAs diretos.
-- **Identificação de Dores (PainSection):** Mapeamento dos gargalos visuais enfrentados pelos clientes.
-- **Catálogo de 5 Serviços Digitais:** Apresentação clara de soluções com links contextualizados para o WhatsApp.
-- **Metodologia em 5 Etapas:** Linha do tempo visual do processo de atendimento.
-- **Transformação Visual (Antes x Depois):** Comparação entre comunicação comum vs posicionamento premium.
-- **Portfólio Interativo Categorizado:** Filtros de projetos em CSS puro via radio buttons.
-- **Quiz Diagnóstico por Etapas:** Diagnóstico interativo step-by-step sem JavaScript.
-- **Formulário de Captura de Leads:** Solicitação de orçamentos com encaminhamento para o WhatsApp.
-- **Acordeão de FAQ Nativo:** Respostas para dúvidas frequentes usando a tag HTML5 `<details>`.
-- **Botões Flutuantes:** Botão fixo do WhatsApp e controle *Voltar ao Topo*.
-- **Design 100% Responsivo:** Adaptado para Mobile, Tablet e Desktop.
+Construída em **HTML5 e CSS3 puros em arquivos separados, sem frameworks e sem JavaScript**.
 
 ---
 
-## 🎨 Identidade Visual (Design System)
+## ⚡ Estrutura da Landing Page (Navegação One Page)
 
-Baseado nos ativos da pasta `.docs/`:
-- **Verde Neon (Accent / CTA):** `#0DD01F`
-- **Preto Void (Fundo):** `#111111`
-- **Prata Tático (Texto):** `#C1C1C1`
-- **Tipografia:** `Orbitron` / `Rajdhani` (Títulos) e `Inter` / `Arial` (Corpo)
+A ordem das seções na página e no menu de navegação do cabeçalho flutuante:
+
+1. **Início (`#top` / `#hero`):** Hero carrossel 3D Glass com 3 imagens alternando a cada 5 segundos, headline de alto impacto, métricas e CTAs.
+2. **Serviços (`#servicos`):** Apresentação dos 5 serviços digitais com CTAs diretos para o WhatsApp.
+3. **Sobre Nós (`#sobre`):** Manifesto de posicionamento, cultura de design e 6 diferenciais estratégicos.
+4. **Processos (`#processos`):** Metodologia detalhada em 5 etapas e comparativo visual Antes x Depois.
+5. **Depoimentos (`#depoimentos`):** Avaliações de clientes, resultados reais e portfólio filtrável por categorias em CSS.
+6. **Diagnóstico (`#diagnostico`):** Quiz interativo de 3 etapas construído 100% em CSS com envio de resultado via WhatsApp.
+7. **Fale Conosco (`#contato`):** Formulário de captura de leads e aviso de escassez de vagas.
+8. **FAQ (`#faq`):** Central de perguntas frequentes em acordeão nativo HTML5.
 
 ---
 
-## 🛠️ Stack Utilizada
+## 🎨 Identidade Visual & Design System
 
-- **HTML5:** Estrutura semântica e acessível.
-- **CSS3:** Variáveis CSS (`:root`), Flexbox, CSS Grid, Efeitos Neon Glow e Interatividade sem JS.
+- **Fundo Global:** `#000000` (Preto Absoluto da logo `.docs/logo.png`).
+- **Painéis Flutuantes (`floating-panel` & `floating-card`):** Fundo dark translúcido (`rgba(14, 14, 14, 0.92)`), `backdrop-filter: blur(20px)`, bordas discretas (`rgba(255, 255, 255, 0.08)`), cantos arredondados (`border-radius: 24px`) e sombras profundas (`box-shadow: 0 20px 50px rgba(0,0,0,0.85)`).
+- **Sem Verde no Fundo:** Verde neon (`#0DD01F`) restrito a acentos de texto, ícones, bordas neon e botões.
+- **Controles Flutuantes:** Botão de WhatsApp no canto inferior direito e botão *Voltar ao Topo* empilhado diretamente acima do WhatsApp.
 
 ---
 
 ## 🚀 Como Executar o Projeto
 
-Como o projeto é 100% estático, não requer instalação de dependências ou processo de build:
-
 1. Clone o repositório:
    ```bash
-   git clone <URL_DO_REPOSITORIO>
+   git clone https://github.com/ofcrldesign-cpu/rl-lp.git
    ```
-2. Abra o arquivo `index.html` em qualquer navegador web (ou utilize extensões como Live Server no VS Code).
+2. Abra o arquivo `index.html` em qualquer navegador web.
 
 ---
 
@@ -55,19 +46,22 @@ Como o projeto é 100% estático, não requer instalação de dependências ou p
 
 ```text
 RL lp/
-├── index.html        # Estrutura HTML5 da landing page
-├── styles.css        # Estilos, variáveis e regras CSS3
-├── .gitignore        # Arquivos ignorados pelo Git
+├── index.html        # Estrutura HTML5 One Page
+├── styles.css        # Design System Floating UI e estilos globais
+├── .gitignore        # Regras do Git
 ├── .env.example      # Exemplo de configuração de ambiente
-├── README.md         # Documentação do projeto
-└── .docs/            # Identidade visual, logo e guia de estilo
+├── README.md         # Documentação técnica do projeto
+└── .docs/            # Identidade visual, logo e imagens do carrossel
     ├── cores.png
     ├── logo.png
-    └── tipografia.png
+    ├── tipografia.png
+    ├── hero_design_grafico.jpg
+    ├── hero_web_design.jpg
+    └── hero_social_media.jpg
 ```
 
 ---
 
-## 📝 Licença e Direitos
+## 📝 Licença
 
 © 2026 **RL Design**. Todos os direitos reservados.
