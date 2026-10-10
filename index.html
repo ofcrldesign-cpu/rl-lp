@@ -29,19 +29,21 @@
       </a>
 
       <!-- Ordem Exata Solicitada: Início / Serviços / Sobre Nós / Processos / Depoimentos / Diagnostico / Fale Conosco / FAQ -->
-      <nav class="nav-desktop" aria-label="Navegação Principal">
-        <a href="#top" class="nav-link">Início</a>
-        <a href="#servicos" class="nav-link">Serviços</a>
-        <a href="#sobre" class="nav-link">Sobre Nós</a>
-        <a href="#processos" class="nav-link">Processos</a>
-        <a href="#depoimentos" class="nav-link">Depoimentos</a>
-        <a href="#diagnostico" class="nav-link">Diagnóstico</a>
-        <a href="#contato" class="nav-link">Fale Conosco</a>
-        <a href="#faq" class="nav-link">FAQ</a>
+      <nav class="nav-desktop" id="nav-links" aria-label="Navegação Principal">
+        <a href="#top" class="nav-link" onclick="this.blur()">Início</a>
+        <a href="#servicos" class="nav-link" onclick="this.blur()">Serviços</a>
+        <a href="#sobre" class="nav-link" onclick="this.blur()">Sobre Nós</a>
+        <a href="#processos" class="nav-link" onclick="this.blur()">Processos</a>
+        <a href="#depoimentos" class="nav-link" onclick="this.blur()">Depoimentos</a>
+        <a href="#diagnostico" class="nav-link" onclick="this.blur()">Diagnóstico</a>
+        <a href="#contato" class="nav-link" onclick="this.blur()">Fale Conosco</a>
+        <a href="#faq" class="nav-link" onclick="this.blur()">FAQ</a>
       </nav>
 
+      <button class="menu-toggle" aria-expanded="false" aria-label="Abrir menu">☰</button>
+
       <a href="https://wa.me/5511924852232?text=Ol%C3%A1%21%20Gostaria%20de%20fazer%20um%20or%C3%A7amento%20com%20a%20RL%20Design." 
-         class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">
+         class="btn btn-primary btn-sm header-cta-btn" target="_blank" rel="noopener noreferrer">
         WhatsApp
       </a>
     </div>
@@ -844,5 +846,7 @@
     <span class="floating-badge">Online</span>
   </a>
 
+  <!-- App Script -->
+  <script src="app.js" defer></script>
 </body>
 </html>
