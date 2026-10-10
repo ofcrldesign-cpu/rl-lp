@@ -29,7 +29,7 @@ A ordem das seções na página e no menu de navegação do cabeçalho flutuante
 - **Painéis Flutuantes (`floating-panel` & `floating-card`):** Fundo dark translúcido (`rgba(14, 14, 14, 0.92)`), `backdrop-filter: blur(20px)`, bordas discretas (`rgba(255, 255, 255, 0.08)`), cantos arredondados (`border-radius: 24px`) e sombras profundas (`box-shadow: 0 20px 50px rgba(0,0,0,0.85)`).
 - **Sem Verde no Fundo:** Verde neon (`#0DD01F`) restrito a acentos de texto, ícones, bordas neon e botões.
 - **Controles Flutuantes:** Botão de WhatsApp no canto inferior direito e botão *Voltar ao Topo* empilhado diretamente acima do WhatsApp.
-- **Menu Mobile Responsivo:** Botão hambúrguer com transição fluida e controle acessível (`aria-expanded`).
+- **Cabeçalho Inteligente & Menu Lateral Mobile:** Cabeçalho com recolhimento dinâmico ao rolar para baixo (*smart scroll hide*), botão flutuante e Menu Lateral (*Off-canvas Drawer*) na versão mobile com overlay escurecido, fechamento por ESC/backdrop e acessibilidade (`aria-expanded`).
 
 ---
 
@@ -49,7 +49,7 @@ A ordem das seções na página e no menu de navegação do cabeçalho flutuante
 RL lp/
 ├── index.html        # Estrutura HTML5 One Page
 ├── styles.css        # Design System Floating UI e estilos globais
-├── app.js            # Lógica de alternância do menu mobile e acessibilidade
+├── app.js            # Controle de rolagem do cabeçalho, menu lateral mobile e acessibilidade
 ├── .gitignore        # Regras de exclusão do Git
 ├── .env.example      # Exemplo de configuração de ambiente
 ├── README.md         # Documentação técnica do projeto

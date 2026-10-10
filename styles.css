@@ -51,6 +51,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
   font-size: 16px;
   background-color: #000000;
 }
@@ -220,6 +221,14 @@ img { max-width: 100%; height: auto; display: block; }
   width: 100%;
   z-index: 10000;
   padding: 12px 1.5rem;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+/* Quando rola para baixo, o cabeçalho desaparece suavemente */
+.header-wrapper.header-hidden {
+  transform: translateY(-120%);
+  opacity: 0;
   pointer-events: none;
 }
 
@@ -887,8 +896,8 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-text-side { text-align: center; }
   .hero-actions { justify-content: center; }
   .hero-showcase-frame { height: 380px; }
-  .nav-desktop { gap: 0.5rem; }
-  .nav-link { font-size: 0.725rem; padding: 0.3rem 0.45rem; }
+  .nav-desktop { gap: 0.6rem; }
+  .nav-link { font-size: 0.725rem; padding: 0.3rem 0.5rem; }
 }
 
 @media (max-width: 992px) {
@@ -899,102 +908,252 @@ img { max-width: 100%; height: auto; display: block; }
   .step-arrow { transform: rotate(90deg); text-align: center; margin: 0.25rem 0; }
   .footer-container { grid-template-columns: 1fr; gap: 2.5rem; }
   .ba-card-comparison { grid-template-columns: 1fr; }
-}
 
-@media (max-width: 768px) {
-  .header-wrapper { top: 10px; padding: 0 1rem; }
+  /* HEADER MOBILE / TABLET (≤ 992px) */
+  .header-wrapper {
+    top: 10px;
+    padding: 0 1rem;
+  }
+
   .header-panel {
-    height: auto;
-    padding: 0.65rem 1.25rem;
+    height: 64px;
+    padding: 0.5rem 1.25rem;
     gap: 0;
     justify-content: space-between;
     position: relative;
-    flex-wrap: nowrap;
+    border-radius: var(--radius-capsule);
     align-items: center;
   }
 
-  /* Ocultar nav e CTA do header em mobile – menu hambúrguer assume */
-  .nav-desktop {
+  /* Mobile: logo à esquerda */
+  .logo-img {
+    height: 38px;
+  }
+
+  /* Ocultar CTA direto da barra para manter visual limpo */
+  .header-cta-btn {
     display: none;
-    flex-direction: column;
-    gap: 0;
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
-    background: rgba(10, 10, 10, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-panel);
-    padding: 1rem 0;
-    z-index: 1001;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95);
-    overflow: hidden;
-    /* Animação de abertura */
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    pointer-events: none;
   }
 
-  /* Estado aberto — ativado via JS com a classe .open */
-  .nav-desktop.open {
-    display: flex;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .nav-desktop .nav-link {
-    font-size: 0.875rem;
-    padding: 0.9rem 1.5rem;
-    border-bottom: 1px solid var(--border-subtle);
-    border-radius: 0;
-    width: 100%;
-    text-align: left;
-    transition: background var(--transition-fast), color var(--transition-fast);
-  }
-
-  .nav-desktop .nav-link:last-child { border-bottom: none; }
-
-  .nav-desktop .nav-link:hover,
-  .nav-desktop .nav-link:focus {
-    background: rgba(13, 208, 31, 0.07);
-    color: var(--color-neon);
-  }
-
-  /* Botão hambúrguer */
+  /* Botão de menu hambúrguer à direita no cabeçalho */
   .menu-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle-hover);
+    border-radius: var(--radius-capsule);
     color: var(--color-white);
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     cursor: pointer;
-    transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+    transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
     flex-shrink: 0;
     line-height: 1;
   }
 
   .menu-toggle:hover,
   .menu-toggle:focus {
-    background: rgba(13, 208, 31, 0.1);
+    background: rgba(13, 208, 31, 0.12);
     border-color: var(--color-neon);
     color: var(--color-neon);
     outline: none;
+    transform: scale(1.05);
   }
 
-  /* Ocultar CTA do header em telas muito pequenas para não sobrecarregar */
-  .header-cta-btn { display: none; }
+  /* Botão Flutuante de Menu Lateral Mobile (criado/exibido quando o cabeçalho desaparece no scroll) */
+  .mobile-side-trigger {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 10005;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-neon);
+    color: var(--color-white);
+    padding: 0.55rem 0.95rem;
+    border-radius: var(--radius-capsule);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 0.775rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95), 0 0 15px var(--color-neon-dim);
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, border-color 0.2s ease;
+  }
 
-  /* Hero e demais ajustes */
-  .hero-section { padding-top: 140px; padding-bottom: 3rem; }
+  .mobile-side-trigger.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .mobile-side-trigger:hover {
+    background: rgba(13, 208, 31, 0.15);
+    border-color: var(--color-neon);
+    color: var(--color-neon);
+  }
+
+  .mobile-side-trigger .trigger-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--color-neon);
+  }
+
+  .mobile-side-trigger .trigger-text {
+    color: var(--color-white);
+  }
+
+  /* Overlay escuro com blur para fechar o menu ao tocar fora */
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10008;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .sidebar-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* ==================== MENU LATERAL MOBILE (OFF-CANVAS DRAWER) ==================== */
+  .nav-desktop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 310px;
+    max-width: 86vw;
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(8, 8, 8, 0.97);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.98);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1.25rem;
+    gap: 0;
+    z-index: 10009;
+    transform: translateX(105%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
+    pointer-events: none;
+  }
+
+  /* Estado aberto ativado pelo clique via JS */
+  .nav-desktop.open {
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  /* Cabeçalho interno do menu lateral */
+  .sidebar-header-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.25rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: var(--color-white);
+    letter-spacing: 0.12em;
+  }
+
+  .sidebar-close-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    border-radius: 50%;
+    color: var(--color-tactical);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+
+  .sidebar-close-btn:hover {
+    color: var(--color-neon);
+    border-color: var(--color-neon);
+    background: rgba(13, 208, 31, 0.1);
+  }
+
+  /* Links verticais do menu lateral */
+  .nav-desktop .nav-link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius-sm);
+    width: 100%;
+    text-align: left;
+    color: var(--color-tactical);
+    transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    display: block;
+  }
+
+  .nav-desktop .nav-link:last-of-type {
+    border-bottom: none;
+  }
+
+  .nav-desktop .nav-link:hover,
+  .nav-desktop .nav-link:focus {
+    background: rgba(13, 208, 31, 0.08);
+    color: var(--color-neon);
+    transform: translateX(4px);
+  }
+
+  /* Rodapé do menu lateral com CTA para WhatsApp */
+  .sidebar-footer-mobile {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .sidebar-cta-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  /* Espaçamento do conteúdo superior para não cobrir atrás da barra */
+  .hero-section {
+    padding-top: 120px;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
   .hero-title { font-size: 1.75rem; }
   .section-title { font-size: 1.55rem; }
   .form-row { grid-template-columns: 1fr; }
@@ -1002,8 +1161,29 @@ img { max-width: 100%; height: auto; display: block; }
   .back-to-top { right: 25px; bottom: 95px; width: 42px; height: 42px; }
 }
 
-/* Em desktop, garantir que o botão hambúrguer NÃO apareça */
-@media (min-width: 769px) {
-  .menu-toggle { display: none; }
-  .nav-desktop { display: flex !important; } /* garante visibilidade independente de .open */
+/* Em desktop (> 992px): logo à esquerda, links na horizontal, botão de contato à direita */
+@media (min-width: 993px) {
+  .menu-toggle,
+  .mobile-side-trigger,
+  .sidebar-overlay,
+  .sidebar-header-mobile,
+  .sidebar-footer-mobile {
+    display: none !important;
+  }
+
+  .nav-desktop {
+    display: flex !important;
+    position: static !important;
+    height: auto !important;
+    width: auto !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+    padding: 0 !important;
+  }
+
+  .header-cta-btn {
+    display: inline-flex !important;
+  }
 }

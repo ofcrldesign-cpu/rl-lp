@@ -30,6 +30,13 @@
 
       <!-- Ordem Exata Solicitada: Início / Serviços / Sobre Nós / Processos / Depoimentos / Diagnostico / Fale Conosco / FAQ -->
       <nav class="nav-desktop" id="nav-links" aria-label="Navegação Principal">
+        <div class="sidebar-header-mobile">
+          <div class="sidebar-brand">
+            <span class="badge-dot"></span> MENU
+          </div>
+          <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Fechar menu lateral">✕</button>
+        </div>
+
         <a href="#top" class="nav-link" onclick="this.blur()">Início</a>
         <a href="#servicos" class="nav-link" onclick="this.blur()">Serviços</a>
         <a href="#sobre" class="nav-link" onclick="this.blur()">Sobre Nós</a>
@@ -38,6 +45,13 @@
         <a href="#diagnostico" class="nav-link" onclick="this.blur()">Diagnóstico</a>
         <a href="#contato" class="nav-link" onclick="this.blur()">Fale Conosco</a>
         <a href="#faq" class="nav-link" onclick="this.blur()">FAQ</a>
+
+        <div class="sidebar-footer-mobile">
+          <a href="https://wa.me/5511924852232?text=Ol%C3%A1%21%20Gostaria%20de%20fazer%20um%20or%C3%A7amento%20com%20a%20RL%20Design." 
+             class="btn btn-primary btn-sm sidebar-cta-btn" target="_blank" rel="noopener noreferrer">
+            Falar no WhatsApp ➔
+          </a>
+        </div>
       </nav>
 
       <button class="menu-toggle" aria-expanded="false" aria-label="Abrir menu">☰</button>
@@ -48,6 +62,15 @@
       </a>
     </div>
   </header>
+
+  <!-- Botão flutuante de Menu Lateral Mobile (surge ao rolar para baixo quando o cabeçalho desaparece) -->
+  <button class="mobile-side-trigger" id="mobile-side-trigger" aria-label="Abrir menu lateral" aria-expanded="false">
+    <span class="trigger-icon">☰</span>
+    <span class="trigger-text">MENU</span>
+  </button>
+
+  <!-- Overlay para fechar o menu lateral ao tocar fora -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
   <main>
     <!-- ==================== 1. HERO SECTION ULTRA-IMPACTANTE ==================== -->
