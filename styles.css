@@ -212,14 +212,14 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 
-/* 4. HEADER & NAVEGAÇÃO ONE PAGE (Na Ordem Exata Solicitada) */
+/* 4. HEADER & NAVEGAÇÃO FIXADA SEMPRE NO TOPO */
 .header-wrapper {
   position: fixed;
-  top: 15px;
+  top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
-  padding: 0 1.5rem;
+  z-index: 10000;
+  padding: 12px 1.5rem;
   pointer-events: none;
 }
 
@@ -227,23 +227,28 @@ img { max-width: 100%; height: auto; display: block; }
   pointer-events: auto;
   max-width: 1260px;
   margin: 0 auto;
-  height: 74px;
-  background: rgba(12, 12, 12, 0.88);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid var(--border-subtle);
+  height: 72px;
+  background: rgba(8, 8, 8, 0.94);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-capsule);
-  padding: 0 1.5rem;
+  padding: 0 1.75rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.98), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .logo-img {
-  height: 40px;
+  height: 44px;
   width: auto;
   object-fit: contain;
+  transition: transform var(--transition-fast);
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
 }
 
 /* Ordem Exata: Início / Serviços / Sobre Nós / Processos / Depoimentos / Diagnostico / Fale Conosco / FAQ */
