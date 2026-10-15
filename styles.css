@@ -57,11 +57,11 @@ html {
 }
 
 body {
-  background-color: #000000;   /* Tom de preto idêntico à logo.png */
+  background-color: #000000;
   color: var(--color-tactical);
   font-family: var(--font-body);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Impede scroll horizontal causado pelo drawer off-canvas */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -265,6 +265,11 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+/* Hamburguer oculto por padrão (desktop) */
+.menu-toggle {
+  display: none;
 }
 
 .nav-link {
@@ -896,6 +901,7 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-text-side { text-align: center; }
   .hero-actions { justify-content: center; }
   .hero-showcase-frame { height: 380px; }
+  /* Ajuste de gap apenas quando nav é desktop (acima de 993px) */
   .nav-desktop { gap: 0.6rem; }
   .nav-link { font-size: 0.725rem; padding: 0.3rem 0.5rem; }
 }
@@ -1051,15 +1057,24 @@ img { max-width: 100%; height: auto; display: block; }
     padding: 1.5rem 1.25rem;
     gap: 0;
     z-index: 10009;
-    transform: translateX(105%);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Combina visibility + transform para garantir ocultamento total */
+    transform: translateX(100%);
+    visibility: hidden;
+    will-change: transform;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0s linear 0.35s;
     overflow-y: auto;
+    overflow-x: hidden;
     pointer-events: none;
   }
 
   /* Estado aberto ativado pelo clique via JS */
   .nav-desktop.open {
     transform: translateX(0);
+    visibility: visible;
+    /* Remove o delay de visibility ao abrir */
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0s linear 0s;
     pointer-events: auto;
   }
 
@@ -1180,7 +1195,11 @@ img { max-width: 100%; height: auto; display: block; }
     border: none !important;
     box-shadow: none !important;
     transform: none !important;
+    visibility: visible !important; /* Garante visibilidade no desktop */
     padding: 0 !important;
+    pointer-events: auto !important;
+    overflow: visible !important;
+    gap: 1rem !important;
   }
 
   .header-cta-btn {
